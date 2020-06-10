@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Transaction = require('../modules/TransactionScema')
 
-router.get('/transaction', async function (req, res) {
+router.get('/transactions', async function (req, res) {
   const allTransaction = await Transaction.find()
   res.send(allTransaction)
 })

@@ -4,7 +4,8 @@ import Transactions from './components/Transactions'
 import './App.css';
 import Operations from './components/Operations';
 import Breakdown from './components/Breakdown';
-import axios from 'axios'
+// import axios from 'axios'
+const axios = require('axios')
 
 class App extends Component {
   constructor() {
@@ -12,47 +13,51 @@ class App extends Component {
     this.state = {
       data:
         [
-          { amount: 3200, vendor: "Elevation", category: "Salary" },
-          { amount: -7, vendor: "Runescape", category: "Entertainment" },
-          { amount: -20, vendor: "Subway", category: "Food" },
-          { amount: -98, vendor: "La Baguetterie", category: "Food" }
+          // { amount: 3200, vendor: "Elevation", category: "Salary" },
+          // { amount: -7, vendor: "Runescape", category: "Entertainment" },
+          // { amount: -20, vendor: "Subway", category: "Food" },
+          // { amount: -98, vendor: "La Baguetterie", category: "Food" }
         ]
     }
   }
-  getBalance = () => {
-    let balance = 0
-    const data = this.state.data
-    data.forEach(tr=> balance += parseInt(tr.amount))
-    return balance
-  }
-
-  deposit = (tr) => {
-    const data = this.state.data
-    data.push(tr)
-    this.setState({ data })
-  }
-
-  withdraw = (tr) => {
-    const data = this.state.data
-    tr.amount = - tr.amount
-    data.push(tr)
-    this.setState({ data })
-  }
-
-  deleteTr = async (tr) => {
-    const data = this.state.data
-    const index = data.findIndex(t => t === tr)
-    data.splice(index, 1)
-    await this.setState({ data })
-  }
-
-  componentDidMount = async() => {
-    // const response = await axios.get("http://localhost:3001/transactions")
-    const response = await axios.get("/transactions")
+  componentDidMount = async () => {
+    const response = await axios.get("http://localhost:8080/transactions")
     this.setState({
       data: response.data
     })
   }
+  getBalance = () => {
+    let balance = 0
+    const data = this.state.data
+    data.forEach(tr => balance += parseInt(tr.amount))
+    return balance
+  }
+
+  deposit = async (tr) => {
+    const response = await axios.post("http://localhost:8080/transaction", tr)
+    const data = [...this.state.data]
+    data.push(response.data)
+    this.setState({ data })
+  }
+
+  withdraw = async (tr) => {
+    const response = await axios.post("http://localhost:8080/transaction", tr)
+    const data = this.state.data
+    response.data.amount = response.data.amount * (-1)
+    data.push(response.data)
+    this.setState({ data })
+  }
+
+  deleteTr = async (trID) => {
+   const id=trID._id
+    const response = await axios.delete(`http://localhost:8080/transaction/${id}`)
+    const data = this.state.data
+    const index = data.findIndex(t => t._id === id)
+    data.splice(index, 1)
+    await this.setState({ data })
+    this.componentDidMount()
+  }
+
 
   render() {
     return (
@@ -64,9 +69,9 @@ class App extends Component {
             <Link to="/breakdown">Breakdown</Link>
           </div>
           <div className='balance'>Balance: ${this.getBalance()}</div>
-          <Route path="/" exact render={() =>  <Transactions transactions={this.state.data} deleteTr={this.deleteTr} />} />
+          <Route path="/" exact render={() => <Transactions transactions={this.state.data} deleteTr={this.deleteTr} />} />
           <Route path="/operations" exact render={() => <Operations deposit={this.deposit} withdraw={this.withdraw} />} />
-          <Route path="/breakdown" exact render={() => <Breakdown data={this.state.data}/>}></Route>
+          <Route path="/breakdown" exact render={() => <Breakdown data={this.state.data} />}></Route>
         </div >
       </Router>
     );
