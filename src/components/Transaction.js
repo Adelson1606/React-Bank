@@ -7,7 +7,7 @@ class Transaction extends Component {
     const { data } = this.props
 
     return (
-      <div className={data.amount > 0 ? 'green' : "red"} >
+      <div className='trans' >
       <span>{data.vendor}</span>
       <span>{data.amount}</span>
       <span>{data.category}</span>

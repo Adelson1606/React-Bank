@@ -43,7 +43,6 @@ class App extends Component {
   withdraw = async (tr) => {
     const response = await axios.post("http://localhost:8080/transaction", tr)
     const data = [...this.state.data] 
-    response.data.amount = response.data.amount * (-1)
     data.push(response.data)
     this.setState({ data })
   }
@@ -68,7 +67,7 @@ class App extends Component {
             <Link to="/operations">Operations</Link>
             <Link to="/breakdown">Breakdown</Link>
           </div>
-          <div className='balance'>Balance: ${this.getBalance()}</div>
+          <div className='balance' style={{color: this.getBalance()>500? "green" : 'red'}}>Balance: ${this.getBalance()}</div>
           <Route path="/" exact render={() => <Transactions transactions={this.state.data} deleteTr={this.deleteTr} />} />
           <Route path="/operations" exact render={() => <Operations deposit={this.deposit} withdraw={this.withdraw} />} />
           <Route path="/breakdown" exact render={() => <Breakdown data={this.state.data} />}></Route>

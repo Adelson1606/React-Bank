@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 
 class Breakdown extends Component {
+
+  showAll = async (category) => {
+    const allData = [...this.props.data]
+    const current = allData.filter(e => e.category === category)
+   alert (current)
+  }
+
+
   oneCategory = () => {
     const allData = this.props.data
-
     const categoryAmount = {} //{cat:45646, hgashbd:58468}
     allData.forEach(e => {
       categoryAmount[e.category]
@@ -18,9 +25,9 @@ class Breakdown extends Component {
     return (
       <div className='breakdown'>
         {arrOfCategories.map(e =>
-          <div className='categoryAmount' key={e[0]}>
-            <span>category: {e[0]}</span> 
-            <span>amount: {e[1]}</span>
+          <div className='categoryAmount' key={e[0]} >
+            <span> {e[0]}</span>
+            <span> {e[1]}</span>
           </div>)}
       </div>
     )

@@ -45,7 +45,7 @@
   background-color: red;
 }
 
-.allLinks{
+.allLinks {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 20px;
@@ -54,7 +54,38 @@
   font-size: xx-large;
 }
 
-.trContainer{
+.trans {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
+  padding: 5px;
+  margin: 5px;
+  border: rgb(218, 169, 113) solid 1px;
+}
+
+.operations {
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.categoryAmount{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+  margin: 5px;
+  border: rgb(218, 169, 113) solid 1px;
+}
+
+#deposit{
+  background-color: seagreen;
+}
+#withdraw{
+  background-color: rgba(207, 69, 69, 0.849);
+}
+
+input{
+  height:50px;
+}
+body{
+  background-color: rgba(248, 246, 233, 0.87);
 }
