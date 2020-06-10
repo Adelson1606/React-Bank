@@ -44,3 +44,17 @@
 .red {
   background-color: red;
 }
+
+.allLinks{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px;
+  background-color: rgb(146, 124, 124);
+  padding: 20px;
+  font-size: xx-large;
+}
+
+.trContainer{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}

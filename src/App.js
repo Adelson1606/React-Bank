@@ -35,14 +35,14 @@ class App extends Component {
 
   deposit = async (tr) => {
     const response = await axios.post("http://localhost:8080/transaction", tr)
-    const data = [...this.state.data]
+    const data = [...this.state.data] //deep copy
     data.push(response.data)
     this.setState({ data })
   }
 
   withdraw = async (tr) => {
     const response = await axios.post("http://localhost:8080/transaction", tr)
-    const data = this.state.data
+    const data = [...this.state.data] 
     response.data.amount = response.data.amount * (-1)
     data.push(response.data)
     this.setState({ data })
@@ -51,11 +51,11 @@ class App extends Component {
   deleteTr = async (trID) => {
    const id=trID._id
     const response = await axios.delete(`http://localhost:8080/transaction/${id}`)
-    const data = this.state.data
+    const data = [...this.state.data] 
     const index = data.findIndex(t => t._id === id)
     data.splice(index, 1)
     await this.setState({ data })
-    this.componentDidMount()
+    // this.componentDidMount()
   }
 
 

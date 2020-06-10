@@ -8,11 +8,11 @@ class Transaction extends Component {
 
     return (
       <div className={data.amount > 0 ? 'green' : "red"} >
-        <span>{data.vendor}</span>
-        <span>{data.amount}</span>
-        <span>{data.category}</span>
-        <span><button onClick={this.deleteTr}>delete</button></span>
-      </div>
+      <span>{data.vendor}</span>
+      <span>{data.amount}</span>
+      <span>{data.category}</span>
+      <span><button onClick={this.deleteTr}>delete</button></span>
+      </div >
     )
   }
 }
