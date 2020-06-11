@@ -4,6 +4,10 @@ import Transactions from './components/Transactions'
 import './App.css';
 import Operations from './components/Operations';
 import Breakdown from './components/Breakdown';
+import ReactTooltip from "react-tooltip";
+
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+
 // import axios from 'axios'
 const axios = require('axios')
 
@@ -71,7 +75,9 @@ class App extends Component {
           <Route path="/" exact render={() => <Transactions transactions={this.state.data} deleteTr={this.deleteTr} />} />
           <Route path="/operations" exact render={() => <Operations deposit={this.deposit} withdraw={this.withdraw} />} />
           <Route path="/breakdown" exact render={() => <Breakdown data={this.state.data} />}></Route>
+          <footer>Made by Nika Pika corp</footer>
         </div >
+
       </Router>
     );
   }

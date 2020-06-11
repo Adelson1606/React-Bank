@@ -19,5 +19,11 @@ router.delete('/transaction/:id', async function (req, res) {
   res.send(transaction)
 })
 
+// router.put('/transaction/:id', async function (req, res) {
+//   const id = req.params.id
+//   const transaction = await Transaction.findOneAndDelete({ "_id": id })
+//   res.send(transaction)
+// })
+
 
 module.exports = router
