@@ -25,7 +25,8 @@ class App extends Component {
     }
   }
   componentDidMount = async () => {
-    const response = await axios.get("http://localhost:8080/transactions")
+    // const response = await axios.get("http://localhost:8080/transactions")
+    const response = await axios.get("/transactions")
     this.setState({
       data: response.data
     })
@@ -38,14 +39,16 @@ class App extends Component {
   }
 
   deposit = async (tr) => {
-    const response = await axios.post("http://localhost:8080/transaction", tr)
+    // const response = await axios.post("http://localhost:8080/transaction", tr)
+    const response = await axios.post('/items', tr)
     const data = [...this.state.data] //deep copy
     data.push(response.data)
     this.setState({ data })
   }
 
   withdraw = async (tr) => {
-    const response = await axios.post("http://localhost:8080/transaction", tr)
+    // const response = await axios.post("http://localhost:8080/transaction", tr)
+    const response = await axios.post("/transaction", tr)
     const data = [...this.state.data] 
     data.push(response.data)
     this.setState({ data })
@@ -53,7 +56,8 @@ class App extends Component {
 
   deleteTr = async (trID) => {
    const id=trID._id
-    const response = await axios.delete(`http://localhost:8080/transaction/${id}`)
+    // const response = await axios.delete(`http://localhost:8080/transaction/${id}`)
+    const response = await axios.delete(`/transaction/${id}`)
     const data = [...this.state.data] 
     const index = data.findIndex(t => t._id === id)
     data.splice(index, 1)
