@@ -7,13 +7,13 @@ const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/bank', {useNewUrlParser: true, useUnifiedTopology: true})
 
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+// app.use(function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
 
-    next()
-})
+//     next()
+// })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -25,6 +25,6 @@ app.get('*', function (req, res) {
 });
 
 const PORT = 8080
-app.listen(process.env.PORT ||PORT, function(){
+app.listen(process.env.PORT || PORT, function(){
     console.log(`Bank running on port ${PORT}`)  
 })
