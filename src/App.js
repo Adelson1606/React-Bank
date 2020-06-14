@@ -40,7 +40,7 @@ class App extends Component {
 
   deposit = async (tr) => {
     // const response = await axios.post("http://localhost:8080/transaction", tr)
-    const response = await axios.post('/items', tr)
+    const response = await axios.post('/transaction', tr)
     const data = [...this.state.data] //deep copy
     data.push(response.data)
     this.setState({ data })
