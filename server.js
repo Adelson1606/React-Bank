@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/bank', {useNewUrlParser: true, useUnifiedTopology: true})
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bank', { useNewUrlParser: true, useUnifiedTopology: true })
 
 // app.use(function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*')
@@ -16,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/bank', {useNewUrl
 // })
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', api)
 
 app.use(express.static(path.join(__dirname, 'build')));
@@ -25,6 +26,11 @@ app.get('*', function (req, res) {
 });
 
 const PORT = 8080
-app.listen(process.env.PORT || PORT, function(){
-    console.log(`Bank running on port ${PORT}`)  
+app.listen(process.env.PORT || PORT, function () {
+    console.log(`Bank running on port ${PORT}`)
 })
+
+
+
+
+// "homepage": "https://github.com/Adelson1606/React-Bank#readme"
