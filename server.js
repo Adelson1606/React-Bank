@@ -5,7 +5,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/bank', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/bank', {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
@@ -25,6 +25,6 @@ app.get('*', function (req, res) {
 });
 
 const PORT = 8080
-app.listen(PORT, function(){
+app.listen(process.env.PORT ||PORT, function(){
     console.log(`Bank running on port ${PORT}`)  
 })
