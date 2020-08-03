@@ -1,4 +1,5 @@
-The app allows users to track their expenses and view all their expenses by category. Although the design wasn't the core goal of this project, i added some basic pie charts, and made it fit for mobile view as well as web.
+One of the first my MERN projects. The app allows users to track their expenses and view all their expenses by category. Although the design wasn't the core goal of this project, As extension I added some basic pie charts
+
 ## Running the project
 
 In the project directory, you can run:
