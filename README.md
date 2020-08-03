@@ -27,6 +27,7 @@ A basic overview of your expenses by category, and some simple piecharts as visu
 
 ## Techstack
 
-1. React
-2. Axios
-3. Express (Node.js), Mongoose (MongoDB).
+1. Mongoose (MongoDB).
+2. Express
+3. React
+4. Node.js
